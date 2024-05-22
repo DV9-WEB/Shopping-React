@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Button = styled.button`
   text-decoration: none;
   max-width: auto;
-  background-color: rgb(98 84 243);
+  background-color: #0f52ba;
   color: rgb(255 255 255);
-  padding: 1.4rem 2.4rem;
+  padding: 1.1rem 2rem;
   border: none;
   text-transform: uppercase;
   text-align: center;

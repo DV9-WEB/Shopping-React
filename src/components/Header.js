@@ -8,7 +8,10 @@ const Header = () => {
   return (
     <MainHeader>
       <NavLink to="/">
-        <h1 className="logo">DV9-WEB</h1>
+        <div className="logo" style={{border: "2px solid black"}}>
+          <span style={{backgroundColor:"#0F52BA",color:"black"}}>Verma</span>&nbsp;
+          <span>Store</span>
+        </div>
       </NavLink>
       <Nav />
     </MainHeader>
@@ -25,7 +28,7 @@ const MainHeader = styled.header`
   position: relative;
 
   .logo {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 

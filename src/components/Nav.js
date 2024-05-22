@@ -5,7 +5,6 @@ import { FiShoppingCart } from "react-icons/fi";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
 
-// Styled Navbar component
 const Navbar = styled.nav`
   .navbar-lists {
     display: flex;
@@ -17,7 +16,7 @@ const Navbar = styled.nav`
       &:visited {
         display: inline-block;
         text-decoration: none;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         font-weight: 500;
         text-transform: uppercase;
         color: ${({ theme }) => theme.colors.black};
@@ -60,7 +59,7 @@ const Navbar = styled.nav`
     border: none;
   }
 
-  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+  @media (max-width: 768px) {
     .mobile-navbar-btn {
       display: inline-block;
       z-index: 9999;
@@ -85,25 +84,27 @@ const Navbar = styled.nav`
       justify-content: center;
       align-items: center;
       transform: translateX(100%);
-      transition: transform 0.3s linear;
+      transition: transform 0.3s linear, visibility 0.3s linear,
+        opacity 0.3s linear;
       visibility: hidden;
       opacity: 0;
+      z-index: 1000; /* Ensure it stays on top */
     }
 
-    .active .navbar-lists {
+    .navbar.active .navbar-lists {
       transform: translateX(0);
       visibility: visible;
       opacity: 1;
     }
 
-    .navbar-link {
-      font-size: 2.4rem; // Larger font size for mobile
+    .navbar-link:{
+      font-size: 2.4rem; /* Larger font size for mobile */
     }
 
     .cart-trolley-link {
       .cart-trolley {
-        height: 4rem; // Larger icon size for mobile
-        width: 4rem; // Larger icon size for mobile
+        hight: 4rem; /* Larger icon size for mobile */
+        width: 4rem; /* Larger icon size for mobile */
       }
 
       .cart-total-item {
@@ -113,43 +114,38 @@ const Navbar = styled.nav`
       }
     }
 
+    
     .darkmode-icon,
     .cart-icon {
-      font-size: 4rem; // Larger icon size for mobile
+      font-size: 4rem; /* Larger icon size for mobile */
     }
   }
 `;
 
-// Styled DarkModeIcon component with media query
 const DarkModeIcon = styled(MdDarkMode)`
   height: 2.5rem;
   width: 2.5rem;
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    height: 4rem; // Larger icon size for mobile
-    width: 4rem; // Larger icon size for mobile
-    font-size: 4rem; // Larger font size for mobile
+    height: 4rem;
+    width: 4rem;
   }
 `;
 
-// Styled OutlineDarkModeIcon component with media query
 const OutlineDarkModeIcon = styled(MdOutlineDarkMode)`
   height: 2.5rem;
   width: 2.5rem;
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    height: 4rem; // Larger icon size for mobile
-    width: 4rem; // Larger icon size for mobile
-    font-size: 4rem; // Larger font size for mobile
+    height: 4rem;
+    width: 4rem;
   }
 `;
 
-// Styled ShoppingCartIcon component with media query
 const ShoppingCartIcon = styled(FiShoppingCart)`
   height: 3.2rem;
   width: 3.2rem;
   @media (max-width: ${({ theme }) => theme.media.mobile}) {
-    height: 4rem; // Larger icon size for mobile
-    width: 4rem; // Larger icon size for mobile
-    font-size: 4rem; // Larger font size for mobile
+    height: 4rem;
+    width: 4rem;
   }
 `;
 
@@ -165,7 +161,6 @@ const Nav = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Function to handle link click and close the menu
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
@@ -220,13 +215,13 @@ const Nav = () => {
             </NavLink>
           </li>
         </ul>
-        <div className="mobile-navbar-btn" onClick={menuClick}>
+        <button className="mobile-navbar-btn" onClick={menuClick}>
           {menuOpen ? (
             <CgClose className="mobile-nav-icon close-outline" />
           ) : (
             <CgMenu className="mobile-nav-icon" />
           )}
-        </div>
+        </button>
       </div>
     </Navbar>
   );
