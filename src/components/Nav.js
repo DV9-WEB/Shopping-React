@@ -6,10 +6,15 @@ import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
 
 const Navbar = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .navbar-lists {
     display: flex;
     gap: 4rem;
     align-items: center;
+    justify-content: center;
 
     .navbar-link {
       &:link,
@@ -22,9 +27,10 @@ const Navbar = styled.nav`
         color: ${({ theme }) => theme.colors.black};
         transition: color 0.3s linear;
       }
+
       &:hover,
       &:active {
-        color: ${({ theme }) => theme.colors.helper};
+        color: ${({ theme }) => theme.colors.black};
       }
     }
   }
@@ -37,6 +43,7 @@ const Navbar = styled.nav`
       height: 2.8rem;
       width: 2.8rem;
     }
+
     .cart-total-item {
       width: 2rem;
       height: 2rem;
@@ -46,8 +53,8 @@ const Navbar = styled.nav`
       border-radius: 50%;
       display: grid;
       place-items: center;
-      top: -15%;
-      right: -30%;
+      top: -20%;
+      right: -35%;
       font-size: 1.2rem;
     }
   }
@@ -57,20 +64,20 @@ const Navbar = styled.nav`
     background-color: transparent;
     cursor: pointer;
     border: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1001;
+
+    .mobile-nav-icon {
+      font-size: 4.2rem;
+      color: ${({ theme }) => theme.colors.black};
+    }
   }
 
   @media (max-width: 768px) {
     .mobile-navbar-btn {
       display: inline-block;
-      z-index: 9999;
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-
-      .mobile-nav-icon {
-        font-size: 4.2rem;
-        color: ${({ theme }) => theme.colors.black};
-      }
     }
 
     .navbar-lists {
@@ -88,7 +95,7 @@ const Navbar = styled.nav`
         opacity 0.3s linear;
       visibility: hidden;
       opacity: 0;
-      z-index: 1000; /* Ensure it stays on top */
+      z-index: 1000;
     }
 
     .navbar.active .navbar-lists {
@@ -97,14 +104,14 @@ const Navbar = styled.nav`
       opacity: 1;
     }
 
-    .navbar-link:{
-      font-size: 2.4rem; /* Larger font size for mobile */
+    .navbar-link {
+      font-size: 2.4rem;
     }
 
     .cart-trolley-link {
       .cart-trolley {
-        hight: 4rem; /* Larger icon size for mobile */
-        width: 4rem; /* Larger icon size for mobile */
+        height: 4rem;
+        width: 4rem;
       }
 
       .cart-total-item {
@@ -114,10 +121,9 @@ const Navbar = styled.nav`
       }
     }
 
-    
     .darkmode-icon,
     .cart-icon {
-      font-size: 4rem; /* Larger icon size for mobile */
+      font-size: 4rem;
     }
   }
 `;
@@ -170,7 +176,11 @@ const Nav = () => {
       <div className={`navbar ${menuOpen ? "active" : ""}`}>
         <ul className="navbar-lists">
           <li>
-            <NavLink to="/" className="navbar-link" onClick={handleLinkClick}>
+            <NavLink
+              to="/"
+              className="navbar-link"
+              onClick={handleLinkClick}
+            >
               Home
             </NavLink>
           </li>
