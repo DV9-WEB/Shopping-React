@@ -1,13 +1,12 @@
 import React from "react";
-import Nav from "./components/Nav";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-const AppLayout = () => {
+const AppLayout = ({ isLogIn, handleLogOut }) => {
   return (
     <>
-      <Header />
+      <Header isLogIn={isLogIn} handleLogOut={handleLogOut} />
       <Outlet />
       <Footer />
     </>

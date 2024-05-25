@@ -1,10 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import AllProducts from "./components/AllProducts";
 
 const Products = () => {
-  return <Wrapper>
-    <h1>Products</h1>
-  </Wrapper>;
+  return(
+    <Wrapper>
+      <AllProducts />
+    </Wrapper>
+  )
 };
 
 const Wrapper = styled.section`

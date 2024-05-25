@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = styled.nav`
   display: flex;
@@ -22,7 +23,6 @@ const Navbar = styled.nav`
         display: inline-block;
         text-decoration: none;
         font-size: 1.5rem;
-        font-weight: 500;
         text-transform: uppercase;
         color: ${({ theme }) => theme.colors.black};
         transition: color 0.3s linear;
@@ -32,6 +32,10 @@ const Navbar = styled.nav`
       &:active {
         color: ${({ theme }) => theme.colors.black};
       }
+    }
+
+    .active-link {
+      font-weight: bold;
     }
   }
 
@@ -108,6 +112,10 @@ const Navbar = styled.nav`
       font-size: 2.4rem;
     }
 
+    .navbar-link.active-link {
+      font-weight: bold;
+    }
+
     .cart-trolley-link {
       .cart-trolley {
         height: 4rem;
@@ -155,7 +163,25 @@ const ShoppingCartIcon = styled(FiShoppingCart)`
   }
 `;
 
-const Nav = () => {
+const AccountButton = styled.div`
+  background-color: #0f52ba;
+  color: white;
+  height: 2.5rem;
+  font-size: 1.6rem;
+  width: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+
+  @media (max-width: 768px) {
+    height: 2.5rem;
+    font-size: 1.6rem;
+    width: 6rem;
+  }
+`;
+
+const Nav = ({ isLogIn, handleLogOut }) => {
   const [mode, setMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -173,12 +199,19 @@ const Nav = () => {
 
   return (
     <Navbar>
+      <h2 style={{ fontSize: "2.5rem", margin: "2rem" }}>
+        <NavLink to="/product">
+          <FaSearch />
+        </NavLink>
+      </h2>
       <div className={`navbar ${menuOpen ? "active" : ""}`}>
         <ul className="navbar-lists">
           <li>
             <NavLink
               to="/"
-              className="navbar-link"
+              className={({ isActive }) =>
+                isActive ? "navbar-link active-link" : "navbar-link"
+              }
               onClick={handleLinkClick}
             >
               Home
@@ -187,7 +220,9 @@ const Nav = () => {
           <li>
             <NavLink
               to="/about"
-              className="navbar-link"
+              className={({ isActive }) =>
+                isActive ? "navbar-link active-link" : "navbar-link"
+              }
               onClick={handleLinkClick}
             >
               About
@@ -196,7 +231,9 @@ const Nav = () => {
           <li>
             <NavLink
               to="/product"
-              className="navbar-link"
+              className={({ isActive }) =>
+                isActive ? "navbar-link active-link" : "navbar-link"
+              }
               onClick={handleLinkClick}
             >
               Product
@@ -205,7 +242,9 @@ const Nav = () => {
           <li>
             <NavLink
               to="/contact"
-              className="navbar-link"
+              className={({ isActive }) =>
+                isActive ? "navbar-link active-link" : "navbar-link"
+              }
               onClick={handleLinkClick}
             >
               Contact
@@ -218,11 +257,24 @@ const Nav = () => {
               <OutlineDarkModeIcon className="darkmode-icon" />
             )}
           </li>
+          {isLogIn && (
+            <li>
+              <NavLink to="/cart" className="navbar-link cart-trolley-link">
+                <ShoppingCartIcon className="cart-icon cart-trolley" />
+                <span className="cart-total-item">9</span>
+              </NavLink>
+            </li>
+          )}
           <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley-link">
-              <ShoppingCartIcon className="cart-icon cart-trolley" />
-              <span className="cart-total-item">9</span>
-            </NavLink>
+            {isLogIn ? (
+              <NavLink to="/" onClick={handleLogOut}>
+                <AccountButton>Logout</AccountButton>
+              </NavLink>
+            ) : (
+              <NavLink to="/login">
+                <AccountButton>Login</AccountButton>
+              </NavLink>
+            )}
           </li>
         </ul>
         <button className="mobile-navbar-btn" onClick={menuClick}>
