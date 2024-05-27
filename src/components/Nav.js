@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdDarkMode, MdOutlineDarkMode } from "react-icons/md";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
+import { DataContext } from "../Context/Context";
 
 const Navbar = styled.nav`
   display: flex;
@@ -183,6 +184,7 @@ const AccountButton = styled.div`
 
 const Nav = ({ isLogIn, handleLogOut }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { addToCart} = useContext(DataContext);
 
   const menuClick = () => {
     setMenuOpen(!menuOpen);
@@ -249,7 +251,7 @@ const Nav = ({ isLogIn, handleLogOut }) => {
             <li>
               <NavLink to="/cart" className="navbar-link cart-trolley-link">
                 <ShoppingCartIcon className="cart-icon cart-trolley" />
-                <span className="cart-total-item">9</span>
+                <span className="cart-total-item">{addToCart.length>9?"9+":addToCart.length}</span>
               </NavLink>
             </li>
           )}
