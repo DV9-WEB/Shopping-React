@@ -1,11 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
+import { DataContext } from "../Context/Context";
+import ProductCard from "./ProductCard";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("");
+  const { setAddToCart } = useContext(DataContext);
 
   useEffect(() => {
     const getAPI = async (url) => {
@@ -20,17 +23,10 @@ const AllProducts = () => {
     getAPI("https://fakestoreapi.com/products");
   }, []);
 
-  // Function to extract the first three words from a string
-  const getFirstThreeWords = (str) => {
-    return str.split(" ").slice(0, 3).join(" ");
-  };
-
-  // Filter products based on search term
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
 
-  // Function to sort products based on price
   const sortProducts = () => {
     if (sortOrder === "highToLow") {
       return filteredProducts.slice().sort((a, b) => b.price - a.price);
@@ -62,17 +58,16 @@ const AllProducts = () => {
       )}
       <div className="main">
         {sortedProducts.map((product) => (
-          <Card key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <div className="info">
-              <h3>{getFirstThreeWords(product.title)}</h3>
-              <h3 className="price">
-                <b>
-                  Price: <span>{product.price}₹</span>
-                </b>
-              </h3>
-            </div>
-          </Card>
+          <ProductCard
+            key={product.id}
+            product={product}
+            onAddToCart={() =>
+              setAddToCart((prevProduct) => [
+                ...prevProduct,
+                { ...product, quantity: 1 },
+              ])
+            }
+          />
         ))}
       </div>
     </Wrapper>
@@ -112,50 +107,6 @@ const Wrapper = styled.section`
     @media (min-width: 768px) {
       grid-template-columns: repeat(4, 1fr);
     }
-  }
-`;
-
-const Card = styled.div`
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid ${({ theme }) => theme.colors.helper};
-  text-align: center;
-  transition: transform 0.3s ease;
-  height: 27rem;
-  width: 25rem;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-
-  img {
-    width: 100%;
-    height: 80%;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .info {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-  }
-
-  .price {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .price span {
-    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

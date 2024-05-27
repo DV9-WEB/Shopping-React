@@ -52,6 +52,7 @@ const Wrapper = styled.section`
   flex-direction: column;
 
   .main {
+    margin-top: 2rem;
     position: relative;
     height: 70vh;
     width: 80vw;
@@ -61,7 +62,7 @@ const Wrapper = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   .close {
@@ -79,7 +80,7 @@ const Wrapper = styled.section`
 
   h2 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 4rem;
     color: #333;
   }
 
@@ -91,16 +92,18 @@ const Wrapper = styled.section`
 
     input {
       padding: 0.5rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
       border: 1px solid #ccc;
       border-radius: 5px;
       width: 50%;
-      margin: auto; /* Centering input */
+      margin: auto;
+      height: 2.5rem; /* Centering input */
     }
 
     button {
       padding: 0.5rem;
-      font-size: 1rem;
+      font-size: 1.2rem;
+      height: 2.5rem;
       border: none;
       border-radius: 5px;
       background-color: #0f52ba;

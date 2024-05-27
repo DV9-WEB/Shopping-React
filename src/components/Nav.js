@@ -182,12 +182,7 @@ const AccountButton = styled.div`
 `;
 
 const Nav = ({ isLogIn, handleLogOut }) => {
-  const [mode, setMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const modeClick = () => {
-    setMode(!mode);
-  };
 
   const menuClick = () => {
     setMenuOpen(!menuOpen);
@@ -199,7 +194,7 @@ const Nav = ({ isLogIn, handleLogOut }) => {
 
   return (
     <Navbar>
-      <h2 style={{ fontSize: "2.5rem", margin: "2rem" }}>
+      <h2 style={{ fontSize: "2rem", margin: "2rem", marginTop: "2.5rem" }}>
         <NavLink to="/product">
           <FaSearch />
         </NavLink>
@@ -249,13 +244,6 @@ const Nav = ({ isLogIn, handleLogOut }) => {
             >
               Contact
             </NavLink>
-          </li>
-          <li onClick={modeClick}>
-            {mode ? (
-              <DarkModeIcon className="darkmode-icon" />
-            ) : (
-              <OutlineDarkModeIcon className="darkmode-icon" />
-            )}
           </li>
           {isLogIn && (
             <li>

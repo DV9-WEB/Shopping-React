@@ -11,6 +11,7 @@ import { GlobalStyle } from "./GlobalStyle";
 import { ThemeProvider } from "styled-components";
 import AppLayout from "./AppLayout";
 import Account from "./components/Account";
+import { DataProvider } from "./Context/Context"
 
 const App = () => {
   const [isLogIn, setIsLogIn] = useState(false);
@@ -48,30 +49,32 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <GlobalStyle />
-        <Routes>
-          <Route
-            element={
-              <AppLayout isLogIn={isLogIn} handleLogOut={handleLogOut} />
-            }
-          >
-            <Route path="/" element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="product" element={<Products />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="singleproduct/:id" element={<SingleProduct />} />
+    <DataProvider>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <GlobalStyle />
+          <Routes>
             <Route
-              path="login"
-              element={<Account handleLogIn={handleLogIn} />}
-            />
-            <Route path="cart" element={<Cart />} />
-          </Route>
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+              element={
+                <AppLayout isLogIn={isLogIn} handleLogOut={handleLogOut} />
+              }
+            >
+              <Route path="/" element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="product" element={<Products />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="singleproduct/:id" element={<SingleProduct />} />
+              <Route
+                path="login"
+                element={<Account handleLogIn={handleLogIn} />}
+              />
+              <Route path="cart" element={<Cart />} />
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </DataProvider>
   );
 };
 
