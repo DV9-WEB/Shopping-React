@@ -249,19 +249,25 @@ const Nav = ({ isLogIn, handleLogOut }) => {
           </li>
           {isLogIn && (
             <li>
-              <NavLink to="/cart" className="navbar-link cart-trolley-link">
+              <NavLink
+                to="/cart"
+                className="navbar-link cart-trolley-link"
+                onClick={handleLinkClick}
+              >
                 <ShoppingCartIcon className="cart-icon cart-trolley" />
-                <span className="cart-total-item">{addToCart.length>9?"9+":addToCart.length}</span>
+                <span className="cart-total-item">
+                  {addToCart.length > 9 ? "9+" : addToCart.length}
+                </span>
               </NavLink>
             </li>
           )}
           <li>
             {isLogIn ? (
-              <NavLink to="/" onClick={handleLogOut}>
+              <NavLink to="/" onClick={handleLogOut} onClick={handleLinkClick}>
                 <AccountButton>Logout</AccountButton>
               </NavLink>
             ) : (
-              <NavLink to="/login">
+              <NavLink to="/login" onClick={handleLinkClick}>
                 <AccountButton>Login</AccountButton>
               </NavLink>
             )}
