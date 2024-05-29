@@ -68,6 +68,7 @@ const Cart = () => {
     <Wrapper>
       {addToCart.length === 0 ? (
         <EmptyCart>
+          <img src="https://img.freepik.com/premium-vector/shopping-cart-with-cross-mark-wireless-paymant-icon-shopping-bag-failure-paymant-sign-online-shopping-vector_662353-912.jpg" />
           <h2>Cart is empty</h2>
         </EmptyCart>
       ) : (
@@ -116,7 +117,10 @@ const Cart = () => {
           ))}
           <div className="total">
             <h3>Total Cart Price: {getTotalCartPrice()}₹</h3>
-            <button className="order-button" onClick={()=>handleOrderPlace(addToCart[0])}>
+            <button
+              className="order-button"
+              onClick={() => handleOrderPlace(addToCart[0])}
+            >
               Order Place
             </button>
           </div>
@@ -259,13 +263,24 @@ const EmptyCart = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
   color: white;
   border-radius: 8px;
+  gap: 2rem;
+
+  img {
+    height: 50vh;
+  }
 
   h2 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    img{
+      height: 25vh;
+    }
   }
 `;
 
