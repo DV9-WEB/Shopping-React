@@ -5,7 +5,7 @@ import HeroSection from './components/HeroSection'
 const About = () => {
 
   const data = {
-    name: "Verma Ecommerce",
+    name: "Sheetal Ecommerce",
   };
 
   return (
