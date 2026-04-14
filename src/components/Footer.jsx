@@ -24,7 +24,7 @@ const Footer = () => {
       <footer>
         <div className="container grid grid-four-column">
           <div className="footer-about">
-            <h3>Deepanshu Verma</h3>
+            <h3>Sheetal Singh</h3>
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
           </div>
           <div className="footer-subscribe">
@@ -62,7 +62,7 @@ const Footer = () => {
           </div>
           <div className="footer-contact">
             <h3>Call Us</h3>
-            <h3>+91 9516274854</h3>
+            <h3>+91 123456789</h3>
           </div>
         </div>
 
@@ -70,7 +70,7 @@ const Footer = () => {
           <hr />
           <div className="container grid grid-two-column">
             <p>
-              @{new Date().getFullYear()} Deepanshu Verma. All Rights Reserved
+              @{new Date().getFullYear()} Sheetal Singh. All Rights Reserved
             </p>
             <div className="footer-terms">
               <p>PRIVACY POLICY</p>
