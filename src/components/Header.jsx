@@ -9,7 +9,7 @@ const Header = ({ isLogIn, handleLogOut }) => {
       <NavLink to="/">
         <div className="logo" style={{ border: "2px solid black" }}>
           <span style={{ backgroundColor: "#0F52BA", color: "white" }}>
-            Sheetal
+            SHEETAL
           </span>
           &nbsp;
           <span>Store</span>
