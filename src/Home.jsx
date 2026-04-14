@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 const Home = () => {
 
   const data = {
-    name:"Verma Store"
+    name:"Sheetal Store"
   }
 
   return (
